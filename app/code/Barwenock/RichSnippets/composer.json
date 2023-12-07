@@ -1,0 +1,21 @@
+{
+    "name": "barwenock/rich-snippets",
+    "description": "Rich Snippets For Magento 2.4",
+    "require": {
+        "magento/framework": "*",
+        "magento/module-catalog": "104.0.*"
+    },
+    "type": "magento2-module",
+    "version": "0.0.1",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Barwenock\\SocialAuth\\": ""
+        }
+    }
+}

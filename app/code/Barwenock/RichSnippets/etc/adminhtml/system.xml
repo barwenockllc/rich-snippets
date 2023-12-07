@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Barwenock
+ * @copyright Copyright (c) Barwenock
+ * @package Rich Snippets for Magento 2
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="barwenock" translate="label" sortOrder="300">
+            <label>Barwenock Extensions</label>
+        </tab>
+        <section id="rich_snippets" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rich Snippets</label>
+            <tab>barwenock</tab>
+            <resource>Barwenock_RichSnippets::richsnippets</resource>
+            <group id="product_snippet" translate="label" type="text" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Snippet</label>
+                <field id="status" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="description" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description Attribute</label>
+                    <source_model>Barwenock\RichSnippets\Model\Config\Source\ProductDescriptionOption</source_model>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="brand" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand Attribute</label>
+                    <source_model>Barwenock\RichSnippets\Model\Config\Source\ProductAttributeOptions</source_model>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="rating" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Rating</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Adds product rating to rich data.</comment>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="price_valid_until" translate="label" type="date" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>priceValidUntil Value</label>
+                    <frontend_model>Barwenock\RichSnippets\Model\Config\Source\DateTimeOptions</frontend_model>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                    <comment>Date value will be displayed for the priceValidUntil snippet.</comment>
+                </field>
+            </group>
+            <group id="category_snippet" translate="label" type="text" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Snippet</label>
+                <field id="status" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Add schema markup for each product on the current category page. <br/>
+                        <span style="color: red;">
+                            Note: if enabled, the performance is impacted negatively.
+                        </span>]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="organization_snippet" translate="label" type="text" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Organization Snippet</label>
+                <field id="status" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="name" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organisation Name</label>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="url" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organisation Url</label>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="logo" translate="label" type="image" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organisation Logo</label>
+                    <comment>Accepted image formats: JPG, JPEG, GIF, and PNG.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">rich_snippets</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">rich_snippets</upload_dir>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="country" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization Country</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="state" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization State\Region</label>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="postal_code" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization ZIP\Postal Code</label>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="city" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization City</label>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="street" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization Street Address</label>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                </field>
+                <field id="contact" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization Customer Service Phone</label>
+                    <depends>
+                        <field id="status">1</field>
+                    </depends>
+                    <comment>An internationalized version of the phone number</comment>
+                </field>
+            </group>
+            <group id="breadcrumbs" translate="label" type="text" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Breadcrumbs Snippet</label>
+                <field id="status" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

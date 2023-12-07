@@ -1,0 +1,39 @@
+<?php
+/**
+ * @author Barwenock
+ * @copyright Copyright (c) Barwenock
+ * @package Rich Snippets for Magento 2
+ */
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Breadcrumbs
+ * @var $escaper \Magento\Framework\Escaper
+ * @var $crumbs array
+ */
+?>
+<?php if ($crumbs && is_array($crumbs)): ?>
+    <div class="breadcrumbs">
+        <ul class="items">
+            <?php foreach ($crumbs as $crumbName => $crumbInfo): ?>
+                <li class="item <?= $escaper->escapeHtmlAttr($crumbName) ?>">
+                    <?php if ($crumbInfo['link']): ?>
+                        <a href="<?= $escaper->escapeUrl($crumbInfo['link']); ?>"
+                           title="<?= $escaper->escapeHtml($crumbInfo['title']); ?>">
+                            <?= $escaper->escapeHtml($crumbInfo['label']); ?>
+                        </a>
+                    <?php elseif ($crumbInfo['last']): ?>
+                        <strong><?= $escaper->escapeHtml($crumbInfo['label']); ?></strong>
+                    <?php else: ?>
+                        <?= $escaper->escapeHtml($crumbInfo['label']); ?>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <?php if ($block->getViewModel()->getBreadcrumbsSnippetStatus() === 1): ?>
+        <script type="application/ld+json">
+            <?= /* @noEscape */ $block->getViewModel()->getBreadcrumbsSnippet($crumbs); ?>
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,16 @@
+<?php
+/**
+ * @author Barwenock
+ * @copyright Copyright (c) Barwenock
+ * @package Rich Snippets for Magento 2
+ */
+
+/**
+ * @var $block \Barwenock\RichSnippets\Block\ProductSnippet
+ */
+?>
+<?php if ($block->getProductSnippetStatus() === 1): ?>
+    <script type="application/ld+json">
+        <?= /* @noEscape */ $block->getProductSnippet(); ?>
+    </script>
+<?php endif; ?>

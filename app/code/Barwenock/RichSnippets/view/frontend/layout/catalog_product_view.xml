@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Barwenock
+ * @copyright Copyright (c) Barwenock
+ * @package Rich Snippets for Magento 2
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Barwenock\RichSnippets\Block\ProductSnippet" name="rich-snippet-catalog-product"
+                   template="Barwenock_RichSnippets::product-snippet.phtml" />
+            <block class="Barwenock\RichSnippets\Block\ProductBreadcrumbsSnippet"
+                   name="rich-snippet-catalog-category-breadcrumbs"
+                   template="Barwenock_RichSnippets::product-breadcrumbs-snippet.phtml" />
+        </referenceBlock>
+    </body>
+</page>
